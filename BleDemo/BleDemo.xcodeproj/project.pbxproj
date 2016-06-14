@@ -14,8 +14,8 @@
 		14B6CC531D0657EA002010E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B6CC521D0657EA002010E4 /* Assets.xcassets */; };
 		14B6CC561D0657EA002010E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B6CC541D0657EA002010E4 /* LaunchScreen.storyboard */; };
 		14CFB2CD1D0802FD009F8877 /* PeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2CC1D0802FD009F8877 /* PeripheralViewController.m */; };
-		14CFB2D91D0FE86A009F8877 /* pickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2D71D0FE86A009F8877 /* pickViewController.m */; };
-		14CFB2DA1D0FE86A009F8877 /* pickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2D81D0FE86A009F8877 /* pickViewController.xib */; };
+		14CFB2DE1D0FE91C009F8877 /* pickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2DC1D0FE91C009F8877 /* pickViewController.m */; };
+		14CFB2DF1D0FE91C009F8877 /* pickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +31,9 @@
 		14B6CC571D0657EA002010E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14CFB2CB1D0802FD009F8877 /* PeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralViewController.h; sourceTree = "<group>"; };
 		14CFB2CC1D0802FD009F8877 /* PeripheralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralViewController.m; sourceTree = "<group>"; };
-		14CFB2D61D0FE86A009F8877 /* pickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pickViewController.h; path = "../../../../../Downloads/pickviewDelegate更新适配/pickviewDelegate/pickViewController.h"; sourceTree = "<group>"; };
-		14CFB2D71D0FE86A009F8877 /* pickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = pickViewController.m; path = "../../../../../Downloads/pickviewDelegate更新适配/pickviewDelegate/pickViewController.m"; sourceTree = "<group>"; };
-		14CFB2D81D0FE86A009F8877 /* pickViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = pickViewController.xib; path = "../../../../../Downloads/pickviewDelegate更新适配/pickviewDelegate/pickViewController.xib"; sourceTree = "<group>"; };
+		14CFB2DB1D0FE91C009F8877 /* pickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickViewController.h; sourceTree = "<group>"; };
+		14CFB2DC1D0FE91C009F8877 /* pickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickViewController.m; sourceTree = "<group>"; };
+		14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pickViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,15 +66,15 @@
 		14B6CC451D0657EA002010E4 /* BleDemo */ = {
 			isa = PBXGroup;
 			children = (
-				14CFB2D61D0FE86A009F8877 /* pickViewController.h */,
-				14CFB2D71D0FE86A009F8877 /* pickViewController.m */,
-				14CFB2D81D0FE86A009F8877 /* pickViewController.xib */,
 				14B6CC491D0657EA002010E4 /* AppDelegate.h */,
 				14B6CC4A1D0657EA002010E4 /* AppDelegate.m */,
 				14B6CC4C1D0657EA002010E4 /* ViewController.h */,
 				14B6CC4D1D0657EA002010E4 /* ViewController.m */,
 				14CFB2CB1D0802FD009F8877 /* PeripheralViewController.h */,
 				14CFB2CC1D0802FD009F8877 /* PeripheralViewController.m */,
+				14CFB2DB1D0FE91C009F8877 /* pickViewController.h */,
+				14CFB2DC1D0FE91C009F8877 /* pickViewController.m */,
+				14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */,
 				14B6CC4F1D0657EA002010E4 /* Main.storyboard */,
 				14B6CC521D0657EA002010E4 /* Assets.xcassets */,
 				14B6CC541D0657EA002010E4 /* LaunchScreen.storyboard */,
@@ -151,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B6CC561D0657EA002010E4 /* LaunchScreen.storyboard in Resources */,
-				14CFB2DA1D0FE86A009F8877 /* pickViewController.xib in Resources */,
+				14CFB2DF1D0FE91C009F8877 /* pickViewController.xib in Resources */,
 				14B6CC531D0657EA002010E4 /* Assets.xcassets in Resources */,
 				14B6CC511D0657EA002010E4 /* Main.storyboard in Resources */,
 			);
@@ -166,7 +166,7 @@
 			files = (
 				14CFB2CD1D0802FD009F8877 /* PeripheralViewController.m in Sources */,
 				14B6CC4E1D0657EA002010E4 /* ViewController.m in Sources */,
-				14CFB2D91D0FE86A009F8877 /* pickViewController.m in Sources */,
+				14CFB2DE1D0FE91C009F8877 /* pickViewController.m in Sources */,
 				14B6CC4B1D0657EA002010E4 /* AppDelegate.m in Sources */,
 				14B6CC481D0657EA002010E4 /* main.m in Sources */,
 			);
