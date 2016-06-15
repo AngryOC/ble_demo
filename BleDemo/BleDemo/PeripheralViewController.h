@@ -11,7 +11,30 @@
 #import "pickViewController.h"
 #import "SetRangeViewController.h"
 
-@interface PeripheralViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,CBPeripheralDelegate, pickViewDelegate, NSCopying>
+typedef NS_ENUM(NSInteger, Channel)
+{
+    //以下是枚举成员
+    ReadChannel = 0,
+    WriteChannel = 1,
+    NotifyChannel = 2,
+    NoneChannel = 4
+};
+
+typedef NS_ENUM(NSInteger, CMDType) {
+    RealtimeReportCMD   = 1,    //上报实时数据
+    ThresholdReportCMD  = 2,    //报警阈值 上报
+    RecordReportCMD     = 3,    //历史记录 上报
+    MCUSeriesReportCMD  = 4,    //MCU序列号 上报
+    PMReportCMD         = 12,   //PM2.5 上报
+    
+    AlarmReportCMD      =  21,     //报警
+    
+    NoneCMD             = 0
+    
+    
+};
+
+@interface PeripheralViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,CBPeripheralDelegate, pickViewDelegate>
 
 @property (nonatomic, strong) UITableView *characterTable;
 
@@ -32,7 +55,16 @@
 
 
 
+@property enum Channel cmdChannel;
+@property enum CMDType cmdType;
+@property UIView *overView;
+
+@property NSMutableArray *dataArray1;
+
+
+
 - (void)getTextStr:(NSString *)text;
+- (void) getRangCMDString:(NSString *) cmdStr;
 
 - (void) removeOverView;
 

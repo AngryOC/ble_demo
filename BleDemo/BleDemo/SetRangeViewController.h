@@ -32,4 +32,6 @@
 
 @property (nonatomic)NSMutableArray *rangeArray;
 
+@property id delegate;
+
 @end

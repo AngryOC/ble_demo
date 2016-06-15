@@ -17,45 +17,30 @@
 #define kCharacWriteUUID @"33221102-5544-7766-9988-AABBCCDDEEFF"
 #define kCharacReadUUID @"33221104-5544-7766-9988-AABBCCDDEEFF"
 
-typedef NS_ENUM(NSInteger, Channel)
-{
-    //以下是枚举成员
-    ReadChannel = 0,
-    WriteChannel = 1,
-    NotifyChannel = 2,
-    NoneChannel = 4
-};
 
-typedef NS_ENUM(NSInteger, CMDType) {
-    RealtimeReportCMD   = 1,    //上报实时数据
-    ThresholdReportCMD  = 2,    //报警阈值 上报
-    RecordReportCMD     = 3,    //历史记录 上报
-    MCUSeriesReportCMD  = 4,    //MCU序列号 上报
-    PMReportCMD         = 12,   //PM2.5 上报
-    
-    AlarmReportCMD      =  21,     //报警
-    
-    NoneCMD             = 0
-    
-    
-};
 
 //static NSString * const kServiceUUID = @"Battery";
 static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E9C97";
 
 @interface PeripheralViewController () {
-    enum Channel cmdChannel;
-    enum CMDType cmdType;
-    UIView *overView;
-    
-    NSMutableArray *dataArray1;
+//    enum Channel cmdChannel;
+//    enum CMDType cmdType;
+//    UIView *overView;
+//    
+//    NSMutableArray *dataArray1;
     
 }
+
+
 
 @end
 
 @implementation PeripheralViewController
 
+@synthesize cmdChannel;
+@synthesize cmdType;
+@synthesize overView;
+@synthesize dataArray1;
 
 - (NSArray *) UUIDSArray {
     if (_UUIDSArray == nil) {
@@ -436,7 +421,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
  */
 
 - (NSString *) analyResultStr:(NSString *) result {
-    if (result.length == 0) {
+    if (result.length < 8 ) {
         return nil;
     }
     NSString *returnStr;
@@ -459,7 +444,30 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 [dataArray addObject:[NSNumber numberWithUnsignedLong:number]];
             }
             
-            returnStr = [NSString stringWithFormat:@"实时数据 {电压:%0.3f | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue]];
+            
+            NSArray *trueTitles = [NSArray arrayWithObjects:@"使用中", @"行驶中", @"已锁定", @"有其他人员", nil];
+            NSArray *falseTitles = [NSArray arrayWithObjects:@"未使用", @"未行驶", @"未锁定", @"无其他人员", nil];
+            
+            //分析 状态信息  仅 分析 第31 位 字符
+            NSString *stateStr = [result substringWithRange:NSMakeRange(31, 1)];
+            
+//            NSMutableArray *stateArray = [[NSMutableArray alloc] init];
+            
+            long int num = [stateStr integerValue];
+            
+            for (int i = 4; i> 0; i--) {
+                
+                //[stateArray addObject:[NSNumber numberWithInt:num/pow(2, i)]];
+                if (num/pow(2, i-1) == 1) {
+                    [dataArray addObject:trueTitles[4-i]];
+                } else {
+                    [dataArray addObject:falseTitles[4-i]];
+                }
+                
+                num = num % (long int)(pow(2, i-1));
+            }
+            
+            returnStr = [NSString stringWithFormat:@"实时数据 \n{电压:%0.3f | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu \n座椅状态：%@ \n行驶状态：%@ \n卡口状态： %@ \n人员状态： %@ }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue], dataArray[6], dataArray[7], dataArray[8], dataArray[9]];
             NSLog(@"   %@", returnStr);
             
         }
@@ -468,6 +476,9 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         case ThresholdReportCMD: {
             
             
+            if (dataArray1.count != 0) {
+                [dataArray1 removeAllObjects];
+            }
             
             for (int i = 0; i < 7; i++) {
                 
@@ -488,14 +499,58 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             break;
         case RecordReportCMD: {
             
+            if ([[result substringWithRange:NSMakeRange(7, 4)] isEqualToString:@"FFFF"]) {
+                
+                returnStr = [NSString stringWithFormat:@"历史记录: 全部数据上传完成"];
+                
+                
+                break;
+            }
+            
+            
+            NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+            
+            for (int i = 0; i < 6; i++) {
+                
+                NSString *str = [[result substringWithRange:NSMakeRange(9 + i*4, 2)] stringByAppendingString:[result substringWithRange:NSMakeRange(7 + i*4, 2)]];
+                
+                unsigned long number = strtoul([str UTF8String], 0, 16);
+                
+                [dataArray addObject:[NSNumber numberWithUnsignedLong:number]];
+            }
+            
+
+            
+            returnStr = [NSString stringWithFormat:@"历史记录 \n{序号:%lu | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu }", [dataArray[0] unsignedLongValue] + 1, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue]];
+            
+            
             
         }
             break;
         case MCUSeriesReportCMD: {
+            returnStr = [NSString stringWithFormat:@"MCU序列号： %@", [result substringWithRange:NSMakeRange(7, 24)]];
+            
             
         }
             break;
         case AlarmReportCMD: {
+            
+            NSMutableArray *dataArray= [[NSMutableArray alloc] init];
+            
+            NSArray * alarmTitles = [NSArray arrayWithObjects:@"温度下限报警",  @"温度上限报警", @"CO报警", @"CO2报警", @"HCHO报警",  @"PM2.5报警",@"遗留时间报警", @"行驶中卡扣未扣好", nil];
+            
+            long int number = [[result substringWithRange:NSMakeRange(7, 2) ] integerValue];
+            
+            for (int i = 8; i > 0; i--) {
+                
+                if (number / pow(2, i-1) == 1) {
+                    [dataArray addObject:alarmTitles[i-1]];
+                }
+            }
+            
+            for (int i = 0; i < dataArray.count; i++) {
+                returnStr = [returnStr stringByAppendingString:[NSString stringWithFormat:@"%@", dataArray[i]]];
+            }
             
         }
             break;
@@ -515,7 +570,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 }
 
 - (IBAction)analyticBtnClick:(UIButton *)sender {
-    [self analyResultStr:@"<FA0F01A21F1C000000A90103003F001000AF>"];
+//    [self analyResultStr:@"<FA0F01A21F1C000000A90103003F001000AF>"];
 }
 
 - (IBAction)setRangeBtnClick:(UIButton *)sender {
@@ -529,12 +584,16 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
     SetRangeViewController *setVC  = [[SetRangeViewController alloc] initWithNibName:@"SetRangeViewController" bundle:nil];
 
-    setVC.rangeArray = [dataArray1 copy];
+    setVC.rangeArray = [dataArray1 mutableCopy];
+    setVC.delegate = self;
     
     [self.navigationController pushViewController:setVC animated:YES];
     
 }
 
+- (void) getRangCMDString:(NSString *) cmdStr {
+    _cmdTextField.text = [cmdStr uppercaseString];
+}
 
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "-NoticeSwitch:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-peripheral:didDiscoverServices:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
             <Locations>
@@ -106,7 +106,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.314794"
+                  timestampString = "487657420.254012"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
@@ -121,7 +121,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.31491"
+                  timestampString = "487657420.254348"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
             <Locations>
@@ -154,7 +154,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.315673"
+                  timestampString = "487657420.255636"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
@@ -169,7 +169,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.315789"
+                  timestampString = "487657420.255854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "150"
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
             <Locations>
@@ -202,7 +202,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.316556"
+                  timestampString = "487657420.256874"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "159"
@@ -217,7 +217,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487592469.316669"
+                  timestampString = "487657420.256998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "159"
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-peripheral:didWriteValueForCharacteristic:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
             landmarkName = "-hexToString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487594699.336048"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
             landmarkName = "-analyResultStr:"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487594699.336048"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
             landmarkName = "-analyResultStr:"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487594699.336048"
+            timestampString = "487672572.298828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
+            startingLineNumber = "477"
+            endingLineNumber = "477"
             landmarkName = "-analyResultStr:"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487594699.336048"
+            timestampString = "487672572.298828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "-analyResultStr:"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-peripheral:didDiscoverCharacteristicsForService:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/PeripheralViewController.m"
-            timestampString = "487592067.479939"
+            timestampString = "487661340.247751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,12 +442,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BleDemo/SetRangeViewController.m"
-            timestampString = "487592225.265991"
+            timestampString = "487660336.809813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BleDemo/SetRangeViewController.m"
+            timestampString = "487660336.809813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-confirmChangeBtnClick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BleDemo/SetRangeViewController.m"
+            timestampString = "487660336.809813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-confirmChangeBtnClick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BleDemo/SetRangeViewController.m"
+            timestampString = "487660336.809813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-confirmChangeBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
