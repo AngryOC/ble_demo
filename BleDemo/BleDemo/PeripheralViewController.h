@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "pickViewController.h"
+#import "SetRangeViewController.h"
 
-@interface PeripheralViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,CBPeripheralDelegate, pickViewDelegate>
+@interface PeripheralViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,CBPeripheralDelegate, pickViewDelegate, NSCopying>
 
 @property (nonatomic, strong) UITableView *characterTable;
 
@@ -28,6 +29,8 @@
 @property (weak, nonatomic) UIPickerView *cmdPickView;
 
 @property (weak, nonatomic) IBOutlet UISwitch *notifySwitch;
+
+
 
 - (void)getTextStr:(NSString *)text;
 

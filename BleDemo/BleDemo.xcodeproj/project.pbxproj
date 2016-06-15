@@ -16,6 +16,8 @@
 		14CFB2CD1D0802FD009F8877 /* PeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2CC1D0802FD009F8877 /* PeripheralViewController.m */; };
 		14CFB2DE1D0FE91C009F8877 /* pickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2DC1D0FE91C009F8877 /* pickViewController.m */; };
 		14CFB2DF1D0FE91C009F8877 /* pickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */; };
+		14CFB2E61D1001AB009F8877 /* SetRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2E41D1001AB009F8877 /* SetRangeViewController.m */; };
+		14CFB2E71D1001AB009F8877 /* SetRangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2E51D1001AB009F8877 /* SetRangeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,9 @@
 		14CFB2DB1D0FE91C009F8877 /* pickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickViewController.h; sourceTree = "<group>"; };
 		14CFB2DC1D0FE91C009F8877 /* pickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickViewController.m; sourceTree = "<group>"; };
 		14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pickViewController.xib; sourceTree = "<group>"; };
+		14CFB2E31D1001AB009F8877 /* SetRangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetRangeViewController.h; sourceTree = "<group>"; };
+		14CFB2E41D1001AB009F8877 /* SetRangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetRangeViewController.m; sourceTree = "<group>"; };
+		14CFB2E51D1001AB009F8877 /* SetRangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetRangeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,9 @@
 				14CFB2DB1D0FE91C009F8877 /* pickViewController.h */,
 				14CFB2DC1D0FE91C009F8877 /* pickViewController.m */,
 				14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */,
+				14CFB2E31D1001AB009F8877 /* SetRangeViewController.h */,
+				14CFB2E41D1001AB009F8877 /* SetRangeViewController.m */,
+				14CFB2E51D1001AB009F8877 /* SetRangeViewController.xib */,
 				14B6CC4F1D0657EA002010E4 /* Main.storyboard */,
 				14B6CC521D0657EA002010E4 /* Assets.xcassets */,
 				14B6CC541D0657EA002010E4 /* LaunchScreen.storyboard */,
@@ -153,6 +161,7 @@
 				14B6CC561D0657EA002010E4 /* LaunchScreen.storyboard in Resources */,
 				14CFB2DF1D0FE91C009F8877 /* pickViewController.xib in Resources */,
 				14B6CC531D0657EA002010E4 /* Assets.xcassets in Resources */,
+				14CFB2E71D1001AB009F8877 /* SetRangeViewController.xib in Resources */,
 				14B6CC511D0657EA002010E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CFB2CD1D0802FD009F8877 /* PeripheralViewController.m in Sources */,
+				14CFB2E61D1001AB009F8877 /* SetRangeViewController.m in Sources */,
 				14B6CC4E1D0657EA002010E4 /* ViewController.m in Sources */,
 				14CFB2DE1D0FE91C009F8877 /* pickViewController.m in Sources */,
 				14B6CC4B1D0657EA002010E4 /* AppDelegate.m in Sources */,

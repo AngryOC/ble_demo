@@ -10,6 +10,9 @@
 #import "pickViewController.h"
 
 
+
+
+
 #define kServiceUUID @"180F"
 #define kCharacWriteUUID @"33221102-5544-7766-9988-AABBCCDDEEFF"
 #define kCharacReadUUID @"33221104-5544-7766-9988-AABBCCDDEEFF"
@@ -41,9 +44,12 @@ typedef NS_ENUM(NSInteger, CMDType) {
 static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E9C97";
 
 @interface PeripheralViewController () {
-    Channel cmdChannel;
-    CMDType cmdType;
+    enum Channel cmdChannel;
+    enum CMDType cmdType;
     UIView *overView;
+    
+    NSMutableArray *dataArray1;
+    
 }
 
 @end
@@ -69,12 +75,16 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    dataArray1 = [[NSMutableArray alloc] init];
+    
     
     _reciveTextView.editable = NO;
     _analyticTextView.editable = NO;
     
     cmdChannel  = NoneChannel;
     cmdType     = NoneCMD;
+    
+
 
 }
 
@@ -254,34 +264,34 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         
         return;
     }
-    
-    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacReadUUID]]) {
-        NSLog(@"获得最新数据");
-        //打印结果 log
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-        NSString *timeStr = [formatter stringFromDate:[NSDate date]];
-        
-        _reciveTextView.text = [_reciveTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, characteristic.value]];
-        
- //___________解析的数据
-        _analyticTextView.text = [_analyticTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, [self analyResultStr:[self hexToString: characteristic.value]]]];
-        
-        //自动滚动到最后一行
-        if (_reciveTextView.contentSize.height > _reciveTextView.bounds.size.height){
-            [_reciveTextView setContentOffset:CGPointMake(0.f, _reciveTextView.contentSize.height - _reciveTextView.bounds.size.height - 20) animated:YES];
-        }
-        
-        if (_analyticTextView.contentSize.height > _analyticTextView.bounds.size.height) {
-            [_analyticTextView setContentOffset:CGPointMake(0.f, _analyticTextView.contentSize.height - _analyticTextView.bounds.size.height  - 25 ) animated:YES];
-        }
-        
-        
-        
-    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacWriteUUID]]) {
-        NSLog(@"数据写入成功");
-        
-    }
+//    
+//    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacReadUUID]]) {
+//        NSLog(@"获得最新数据");
+//        //打印结果 log
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//        [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//        NSString *timeStr = [formatter stringFromDate:[NSDate date]];
+//        
+//        _reciveTextView.text = [_reciveTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, characteristic.value]];
+//        
+// //___________解析的数据
+//        _analyticTextView.text = [_analyticTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, [self analyResultStr:[self hexToString: characteristic.value]]]];
+//        
+//        //自动滚动到最后一行
+//        if (_reciveTextView.contentSize.height > _reciveTextView.bounds.size.height){
+//            [_reciveTextView setContentOffset:CGPointMake(0.f, _reciveTextView.contentSize.height - _reciveTextView.bounds.size.height - 20) animated:YES];
+//        }
+//        
+//        if (_analyticTextView.contentSize.height > _analyticTextView.bounds.size.height) {
+//            [_analyticTextView setContentOffset:CGPointMake(0.f, _analyticTextView.contentSize.height - _analyticTextView.bounds.size.height  - 25 ) animated:YES];
+//        }
+//        
+//        
+//        
+//    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacWriteUUID]]) {
+//        NSLog(@"数据写入成功");
+//        
+//    }
 
     NSLog(@"%@",characteristic);
     
@@ -313,6 +323,12 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 
 //发送指令 事件
 - (IBAction)sendCMDBtnClick:(UIButton *)sender {
+    
+    if(_cmdTextField.text.length == 0) {
+        NSLog(@"没有 命令");
+        return;
+    }
+    
     //获取 命令行的文本 检查外设连接状态 -- 找到服务（180f）-- 找到特征（1102）-- 写入 命令
     [_cmdTextField endEditing:YES];
     
@@ -356,9 +372,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 
 
 - (void) viewDidAppear:(BOOL)animated {
-    //此时 进行外设 扫描 服务
-    //[self.selPeripheral discoverServices:_UUIDSArray];
-//    [self.selPeripheral discoverServices:nil];  //扫描服务
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -422,7 +436,9 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
  */
 
 - (NSString *) analyResultStr:(NSString *) result {
-    
+    if (result.length == 0) {
+        return nil;
+    }
     NSString *returnStr;
     
     //获取命令 类型  接收报文 第 5 6 表示 命令序号
@@ -443,7 +459,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 [dataArray addObject:[NSNumber numberWithUnsignedLong:number]];
             }
             
-            returnStr = [NSString stringWithFormat:@"实时数据 {电压:%0.3f | 温度：%lu | CO: %lu | CO2: %lu | HCHO: %lu | PM2.5 %lu }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue], [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue], [dataArray[5] unsignedLongValue]];
+            returnStr = [NSString stringWithFormat:@"实时数据 {电压:%0.3f | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue]];
             NSLog(@"   %@", returnStr);
             
         }
@@ -451,7 +467,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             
         case ThresholdReportCMD: {
             
-            NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+            
             
             for (int i = 0; i < 7; i++) {
                 
@@ -459,10 +475,12 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 
                 unsigned long number = strtoul([str UTF8String], 0, 16);
                 
-                [dataArray addObject:[NSNumber numberWithUnsignedLong:number]];
+                [dataArray1 addObject:[NSNumber numberWithUnsignedLong:number]];
             }
             
-            returnStr = [NSString stringWithFormat:@"阈值数据 {温度下限:%lu | 温度上限：%lu | CO上限: %lu | CO2上限: %lu | HCHO上限: %lu | PM2.5上限 %lu | 孩子遗留时间上限：%lu }", [dataArray[0] unsignedLongValue], [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue], [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue], [dataArray[5] unsignedLongValue], [dataArray[6] unsignedLongValue]];
+            returnStr = [NSString stringWithFormat:@"阈值数据 {温度下限:%lu | 温度上限：%lu | CO上限: %0.1f | CO2上限: %lu | HCHO上限: %0.2f | PM2.5上限 %lu | 孩子遗留时间上限：%lu }", [dataArray1[0] unsignedLongValue], [dataArray1[1] unsignedLongValue], [dataArray1[2] unsignedLongValue]/10.0, [dataArray1[3] unsignedLongValue], [dataArray1[4] unsignedLongValue]/100.0, [dataArray1[5] unsignedLongValue], [dataArray1[6] unsignedLongValue]];
+
+            
             NSLog(@"   %@", returnStr);
             
             
@@ -499,6 +517,24 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 - (IBAction)analyticBtnClick:(UIButton *)sender {
     [self analyResultStr:@"<FA0F01A21F1C000000A90103003F001000AF>"];
 }
+
+- (IBAction)setRangeBtnClick:(UIButton *)sender {
+    
+    if (dataArray1.count == 0) {
+        
+        NSLog(@"请先查询阈值");
+        
+        return;
+    }
+    
+    SetRangeViewController *setVC  = [[SetRangeViewController alloc] initWithNibName:@"SetRangeViewController" bundle:nil];
+
+    setVC.rangeArray = [dataArray1 copy];
+    
+    [self.navigationController pushViewController:setVC animated:YES];
+    
+}
+
 
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
