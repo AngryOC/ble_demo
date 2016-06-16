@@ -25,7 +25,10 @@ typedef NS_ENUM(NSInteger, CMDType) {
     ThresholdReportCMD  = 2,    //报警阈值 上报
     RecordReportCMD     = 3,    //历史记录 上报
     MCUSeriesReportCMD  = 4,    //MCU序列号 上报
-    PMReportCMD         = 12,   //PM2.5 上报
+    
+    PMSetGetCMD         = 12,   //PM2.5 系数查询
+    
+    PMSetCMD            = 28,   //PM2.5 系数设定
     
     AlarmReportCMD      =  21,     //报警
     

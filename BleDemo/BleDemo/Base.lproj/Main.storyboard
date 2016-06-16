@@ -54,7 +54,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk0-Nf-cJI">
-                                <rect key="frame" x="20" y="153" width="97" height="35"/>
+                                <rect key="frame" x="20" y="153" width="77" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.70869471230000003" blue="0.10358419770000001" alpha="0.24520722519999999" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="选择命令"/>
                                 <userDefinedRuntimeAttributes>
@@ -67,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlh-T7-Bwg">
-                                <rect key="frame" x="248" y="153" width="107" height="35"/>
+                                <rect key="frame" x="290" y="153" width="65" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.70869471230000003" blue="0.10358419770000001" alpha="0.24520722519999999" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="发送命令"/>
                                 <userDefinedRuntimeAttributes>
@@ -129,8 +129,16 @@
                                     <action selector="analyticBtnClick:" destination="II6-w8-wyq" eventType="touchUpInside" id="JMF-Cv-NML"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSe-z5-Ygl">
+                                <rect key="frame" x="193" y="153" width="89" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.70869471230000003" blue="0.10358419770000001" alpha="0.24520722519999999" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="设置PM系数"/>
+                                <connections>
+                                    <action selector="setPMFactorBtnClick:" destination="II6-w8-wyq" eventType="touchUpInside" id="Br3-yE-qfb"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wg-5d-LAu">
-                                <rect key="frame" x="125" y="153" width="115" height="35"/>
+                                <rect key="frame" x="105" y="153" width="80" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.70869471230000003" blue="0.10358419770000001" alpha="0.24520722519999999" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="设置阈值"/>
                                 <userDefinedRuntimeAttributes>

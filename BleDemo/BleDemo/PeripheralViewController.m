@@ -9,15 +9,9 @@
 #import "PeripheralViewController.h"
 #import "pickViewController.h"
 
-
-
-
-
 #define kServiceUUID @"180F"
 #define kCharacWriteUUID @"33221102-5544-7766-9988-AABBCCDDEEFF"
 #define kCharacReadUUID @"33221104-5544-7766-9988-AABBCCDDEEFF"
-
-
 
 //static NSString * const kServiceUUID = @"Battery";
 static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E9C97";
@@ -31,11 +25,14 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
 }
 
-
-
 @end
 
-@implementation PeripheralViewController
+@implementation PeripheralViewController {
+    
+    NSString *factorString;
+    NSString *correctFactorString;
+    
+}
 
 @synthesize cmdChannel;
 @synthesize cmdType;
@@ -50,7 +47,9 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 }
 
 - (void)getTextStr:(NSString *)text{
+    
     _cmdTextField.text = text;
+    
 }
 
 
@@ -61,6 +60,8 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     self.view.backgroundColor = [UIColor whiteColor];
     
     dataArray1 = [[NSMutableArray alloc] init];
+    
+    factorString = [[NSString alloc] init];
     
     
     _reciveTextView.editable = NO;
@@ -170,12 +171,12 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
     if (error) {
         NSLog(@"Error didWriteValueForCharacteristic: %@", [error localizedDescription]);
+        
     } else {
-        NSLog(@"发送数据成功");
-
+        
+        NSLog(@"命令发送成功");
+        
     }
-    
-    
 }
 
 
@@ -186,10 +187,10 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
     if (error) {
         
-         NSLog(@"Error didUpdateValueForCharacteristic: %@", error.localizedDescription);
+        NSLog(@"Error didUpdateValueForCharacteristic: %@", error.localizedDescription);
+        
         NSLog(@"%@", characteristic);
-        //- (void)setOn:(BOOL)on animated:(BOOL)animated;
-//        [_notifySwitch setOn:NO animated:YES];
+        
         
     } else {
         
@@ -229,7 +230,6 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             
         }
         
-        
     }
     
 }
@@ -249,41 +249,10 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         
         return;
     }
-//    
-//    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacReadUUID]]) {
-//        NSLog(@"获得最新数据");
-//        //打印结果 log
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//        [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-//        NSString *timeStr = [formatter stringFromDate:[NSDate date]];
-//        
-//        _reciveTextView.text = [_reciveTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, characteristic.value]];
-//        
-// //___________解析的数据
-//        _analyticTextView.text = [_analyticTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 通知 \n%@\n\n",timeStr, [self analyResultStr:[self hexToString: characteristic.value]]]];
-//        
-//        //自动滚动到最后一行
-//        if (_reciveTextView.contentSize.height > _reciveTextView.bounds.size.height){
-//            [_reciveTextView setContentOffset:CGPointMake(0.f, _reciveTextView.contentSize.height - _reciveTextView.bounds.size.height - 20) animated:YES];
-//        }
-//        
-//        if (_analyticTextView.contentSize.height > _analyticTextView.bounds.size.height) {
-//            [_analyticTextView setContentOffset:CGPointMake(0.f, _analyticTextView.contentSize.height - _analyticTextView.bounds.size.height  - 25 ) animated:YES];
-//        }
-//        
-//        
-//        
-//    } else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:kCharacWriteUUID]]) {
-//        NSLog(@"数据写入成功");
-//        
-//    }
-
+    
     NSLog(@"%@",characteristic);
     
 }
-
-
-
 
 - (IBAction)NoticeSwitch:(UISwitch *)sender {
     
@@ -415,11 +384,14 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
  ThresholdReportCMD  = 2,    //报警阈值 上报
  RecordReportCMD     = 3,    //历史记录 上报
  MCUSeriesReportCMD  = 4,    //MCU序列号 上报
- PMReportCMD         = 12,   //PM2.5 上报
+ 
+ PMSetGetCMD         = 12,   //PM2.5 系数查询
+ PMSetCMD            = 28,   //PM2.5 系数设定
  
  AlarmReportCMD      =  21,     //报警
  */
 
+//分析接收的 报文串
 - (NSString *) analyResultStr:(NSString *) result {
     if (result.length < 8 ) {
         return nil;
@@ -429,7 +401,9 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     //获取命令 类型  接收报文 第 5 6 表示 命令序号
     NSString *cmdIndex = [result substringWithRange:NSMakeRange(5, 2)];
     
-    switch ([cmdIndex integerValue]) {
+     unsigned long cmdindex = strtoul([cmdIndex UTF8String], 0, 16);
+    
+    switch (cmdindex) {
             //上报实时数据
         case RealtimeReportCMD: {
             
@@ -468,6 +442,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             }
             
             returnStr = [NSString stringWithFormat:@"实时数据 \n{电压:%0.3f | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu \n座椅状态：%@ \n行驶状态：%@ \n卡口状态： %@ \n人员状态： %@ }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue], dataArray[6], dataArray[7], dataArray[8], dataArray[9]];
+            
             NSLog(@"   %@", returnStr);
             
         }
@@ -490,11 +465,8 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             }
             
             returnStr = [NSString stringWithFormat:@"阈值数据 {温度下限:%lu | 温度上限：%lu | CO上限: %0.1f | CO2上限: %lu | HCHO上限: %0.2f | PM2.5上限 %lu | 孩子遗留时间上限：%lu }", [dataArray1[0] unsignedLongValue], [dataArray1[1] unsignedLongValue], [dataArray1[2] unsignedLongValue]/10.0, [dataArray1[3] unsignedLongValue], [dataArray1[4] unsignedLongValue]/100.0, [dataArray1[5] unsignedLongValue], [dataArray1[6] unsignedLongValue]];
-
-            
+     
             NSLog(@"   %@", returnStr);
-            
-            
         }
             break;
         case RecordReportCMD: {
@@ -506,7 +478,6 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 
                 break;
             }
-            
             
             NSMutableArray *dataArray = [[NSMutableArray alloc] init];
             
@@ -522,15 +493,10 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 
             
             returnStr = [NSString stringWithFormat:@"历史记录 \n{序号:%lu | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu }", [dataArray[0] unsignedLongValue] + 1, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue]];
-            
-            
-            
         }
             break;
         case MCUSeriesReportCMD: {
             returnStr = [NSString stringWithFormat:@"MCU序列号： %@", [result substringWithRange:NSMakeRange(7, 24)]];
-            
-            
         }
             break;
         case AlarmReportCMD: {
@@ -551,6 +517,18 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             for (int i = 0; i < dataArray.count; i++) {
                 returnStr = [returnStr stringByAppendingString:[NSString stringWithFormat:@"%@", dataArray[i]]];
             }
+        }
+            break;
+            
+        case PMSetGetCMD: {
+            //获取 pm2.5 系数串
+           NSString *factorStr  = [[result substringWithRange:NSMakeRange(9, 2)] stringByAppendingString:[result substringWithRange:NSMakeRange(7, 2)]];
+            
+            unsigned long factor = strtoul([factorStr UTF8String], 0, 16);
+            
+            factorString = [NSString stringWithFormat:@"%lu", factor];
+            
+            returnStr = [NSString stringWithFormat:@"PM2.5的系数为： %lu", factor];
             
         }
             break;
@@ -595,6 +573,64 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     _cmdTextField.text = [cmdStr uppercaseString];
 }
 
+- (IBAction)setPMFactorBtnClick:(UIButton *)sender {
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"设置PM2.5系数" message:[NSString stringWithFormat:@"原来的系数为：%@", factorString] preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.placeholder = @"新系数=PM标准数值/本设备PM读数*原系数";
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+    }];
+    
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    
+   // __weak NSString *correctFactor = correctFactorString;
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+        UITextField *tmpTF = [[alert textFields] firstObject];
+        
+       // 转化为4位16进制串
+        NSString *tmpStr = [self textToHexstring:tmpTF.text];
+        
+        NSString *cmdString = [NSString stringWithFormat:@"FB031C%@BF",tmpStr];
+        
+        cmdString = [cmdString uppercaseString];
+        
+        _cmdTextField.text = cmdString;
+        
+        
+    }];
+    
+    [alert addAction:cancelAction];
+    
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+- (NSString *) textToHexstring:(NSString *) text {
+    
+    
+    NSString *hexString = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%04lx", (long)[text integerValue]]];
+    
+    //    NSLog(@" ---before %@", hexString);
+    
+    NSString *subPrefix = [hexString substringToIndex:2];
+    NSString *subSuffix = [hexString substringFromIndex:2];
+    
+    hexString = [subSuffix stringByAppendingString:subPrefix];
+    //
+    //    NSLog(@" ---after %@", hexString);
+    
+    return hexString;
+}
+
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
@@ -603,14 +639,6 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     [_cmdTextField resignFirstResponder];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
