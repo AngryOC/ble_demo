@@ -21,18 +21,21 @@ typedef NS_ENUM(NSInteger, Channel)
 };
 
 typedef NS_ENUM(NSInteger, CMDType) {
+    
+    MCUStateCMD         = 0,    //接收 MCU 睡眠时 的状态
     RealtimeReportCMD   = 1,    //上报实时数据
     ThresholdReportCMD  = 2,    //报警阈值 上报
     RecordReportCMD     = 3,    //历史记录 上报
     MCUSeriesReportCMD  = 4,    //MCU序列号 上报
+    VersionInfoCMD      = 5,    //硬件 系统 信息
     
     PMSetGetCMD         = 12,   //PM2.5 系数查询
     
     PMSetCMD            = 28,   //PM2.5 系数设定
     
-    AlarmReportCMD      =  21,     //报警
+    AlarmReportCMD      =  21,  //报警
     
-    NoneCMD             = 0
+    NoneCMD             = 48    //默认状态
     
     
 };

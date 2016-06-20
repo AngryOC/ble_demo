@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _arry = [[NSMutableArray alloc] initWithObjects:@"查询实时数据",@"查询报警设置",@"允许报警",@"禁止报警",@"解除报警",@"查询历史",@"清除历史",@"发送汽车行驶状态",@"发送汽车停止状态",@"查询MCU地址", @"查询PM2.5系数", nil];
-    _cmdArry = [[NSMutableArray alloc] initWithObjects:@"FB0201FFBF",@"FB0202FFBF",@"FB022201BF",@"FB022200BF",@"FB022011BF",@"FB030355AABF",@"FB0313AA55BF",@"FB023001BF",@"FB023000BF",@"FB0204FFBF",@"FB020CFFBF", nil];
+    _arry = [[NSMutableArray alloc] initWithObjects:@"查询实时数据",@"查询报警设置",@"允许报警",@"禁止报警",@"解除报警",@"查询历史",@"清除历史",@"发送汽车行驶状态",@"发送汽车停止状态",@"查询MCU地址", @"查询PM2.5系数", @"查询硬件系统信息",nil];
+    _cmdArry = [[NSMutableArray alloc] initWithObjects:@"FB0201FFBF",@"FB0202FFBF",@"FB022201BF",@"FB022200BF",@"FB022011BF",@"FB030355AABF",@"FB0313AA55BF",@"FB023001BF",@"FB023000BF",@"FB0204FFBF",@"FB020CFFBF", @"FB0205FFBF", nil];
     //self.view.backgroundColor = [UIColor colorWithWhite:0.6 alpha:0.5];
    // [_pickView selectRow:0 inComponent:0 animated:YES];
     _chooseText = _cmdArry[0];

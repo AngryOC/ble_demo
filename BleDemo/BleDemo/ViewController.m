@@ -11,6 +11,8 @@
 #import "ViewController.h"
 #import "PeripheralViewController.h"
 
+#import "MBProgressHUD.h"
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @end
@@ -24,6 +26,8 @@
     NSMutableArray *peripherals;
 
     NSMutableArray *peripheralAds;
+    
+    MBProgressHUD *hud;
 
 }
 
@@ -134,11 +138,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.label.text = NSLocalizedString(@"正在连接设备", @"HUD loading title");
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     //停止扫描
     [centerManager stopScan];
     NSLog(@"did stop scan!");
+    
+    
     
     //连接设备 连接成功则跳转  不成功则停在当前页
     CBPeripheral *selectedPeripheral = [peripherals objectAtIndex:indexPath.row];
@@ -173,8 +182,8 @@
     
     [itemDic setObject:peripheral.identifier.UUIDString forKey:@"id"];
     
-    //判重 没有重复的话 添加到数组中 刷新列表
-    if (![peripherals containsObject:peripheral]) {
+    //判重 没有重复的话 && 并且名字 为 ChildSafetySeat 添加到数组中 刷新列表 && [peripheral.name isEqualToString:@"ChildSafetySeat"]
+    if (![peripherals containsObject:peripheral] ) {
         
         [peripherals addObject:peripheral];
         
@@ -204,6 +213,8 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     NSLog(@"外设连接成功，可进行下部操作");
+    
+    hud.label.text = @"连接成功";
     //开始跳转 页面
    // PeripheralViewController  *periheralVC = [[PeripheralViewController alloc] init];
     
@@ -233,6 +244,8 @@
     
     periheralVC.UUIDSArray = tmpUUIDArray;
     //===========
+    
+    [hud hideAnimated:YES afterDelay:0];
     [self.navigationController pushViewController:periheralVC animated:YES];
     
 }
@@ -240,6 +253,9 @@
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     NSLog(@"外设连接失败，请刷新后重新尝试");
+    hud.label.text = @"连接失败";
+    [hud hideAnimated:YES afterDelay:1];
+    
 }
 
 

@@ -10,9 +10,6 @@
 
 @interface SetRangeViewController : UIViewController <UITextFieldDelegate>
 
-
-
-
 @property (weak, nonatomic) IBOutlet UITextField *minTempTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *maxTF;

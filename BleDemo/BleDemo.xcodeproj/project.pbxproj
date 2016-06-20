@@ -18,6 +18,7 @@
 		14CFB2DF1D0FE91C009F8877 /* pickViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2DD1D0FE91C009F8877 /* pickViewController.xib */; };
 		14CFB2E61D1001AB009F8877 /* SetRangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2E41D1001AB009F8877 /* SetRangeViewController.m */; };
 		14CFB2E71D1001AB009F8877 /* SetRangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CFB2E51D1001AB009F8877 /* SetRangeViewController.xib */; };
+		14CFB2F11D12A76B009F8877 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CFB2F01D12A76B009F8877 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		14CFB2E31D1001AB009F8877 /* SetRangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetRangeViewController.h; sourceTree = "<group>"; };
 		14CFB2E41D1001AB009F8877 /* SetRangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetRangeViewController.m; sourceTree = "<group>"; };
 		14CFB2E51D1001AB009F8877 /* SetRangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetRangeViewController.xib; sourceTree = "<group>"; };
+		14CFB2EF1D12A76B009F8877 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		14CFB2F01D12A76B009F8877 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 		14B6CC3A1D0657EA002010E4 = {
 			isa = PBXGroup;
 			children = (
+				14CFB2EA1D12A6CC009F8877 /* Tools */,
 				14B6CC451D0657EA002010E4 /* BleDemo */,
 				14B6CC441D0657EA002010E4 /* Products */,
 			);
@@ -98,6 +102,23 @@
 				14B6CC471D0657EA002010E4 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14CFB2EA1D12A6CC009F8877 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				14CFB2EB1D12A6E0009F8877 /* MBProgressHUD */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		14CFB2EB1D12A6E0009F8877 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				14CFB2EF1D12A76B009F8877 /* MBProgressHUD.h */,
+				14CFB2F01D12A76B009F8877 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +200,7 @@
 				14CFB2DE1D0FE91C009F8877 /* pickViewController.m in Sources */,
 				14B6CC4B1D0657EA002010E4 /* AppDelegate.m in Sources */,
 				14B6CC481D0657EA002010E4 /* main.m in Sources */,
+				14CFB2F11D12A76B009F8877 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

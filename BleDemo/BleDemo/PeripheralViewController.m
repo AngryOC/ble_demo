@@ -8,6 +8,7 @@
 
 #import "PeripheralViewController.h"
 #import "pickViewController.h"
+#import "MBProgressHUD.h"
 
 #define kServiceUUID @"180F"
 #define kCharacWriteUUID @"33221102-5544-7766-9988-AABBCCDDEEFF"
@@ -22,6 +23,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
 //    UIView *overView;
 //    
 //    NSMutableArray *dataArray1;
+    MBProgressHUD * hud;
     
 }
 
@@ -174,8 +176,11 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         
     } else {
         
+        hud.label.text = @"命令发送成功";
+        
         NSLog(@"命令发送成功");
         
+        [hud hideAnimated:YES afterDelay:0.5];
     }
 }
 
@@ -250,6 +255,14 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         return;
     }
     
+    if (characteristic.isNotifying) {
+        hud.label.text = @"订阅成功";
+        
+    } else {
+        hud.label.text = @"订阅取消";
+    }
+    [hud hideAnimated:YES afterDelay:1];
+    
     NSLog(@"%@",characteristic);
     
 }
@@ -259,6 +272,8 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     NSLog(@"----%s", __func__);
     
     if (sender.on) {
+        hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.label.text = @"正在订阅通知";
         
         NSLog(@"接收实时数据");
         
@@ -282,6 +297,9 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         NSLog(@"没有 命令");
         return;
     }
+    
+    hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.label.text = @"命令发送中";
     
     //获取 命令行的文本 检查外设连接状态 -- 找到服务（180f）-- 找到特征（1102）-- 写入 命令
     [_cmdTextField endEditing:YES];
@@ -533,6 +551,30 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         }
             break;
             
+        case VersionInfoCMD: {
+            
+            NSString *softVersion = [NSString stringWithFormat:@"%@.%@",[returnStr substringWithRange:NSMakeRange(7, 2)],[returnStr substringWithRange:NSMakeRange(9, 2)]];
+            NSString *softReleaseTime = [NSString stringWithFormat:@"20%@年%@月%@日",[returnStr substringWithRange:NSMakeRange(11, 2)],[returnStr substringWithRange:NSMakeRange(13, 2)], [returnStr substringWithRange:NSMakeRange(15, 2)]];
+            NSString *hardVersion = [NSString stringWithFormat:@"%@.%@",[returnStr substringWithRange:NSMakeRange(17, 2)],[returnStr substringWithRange:NSMakeRange(19, 2)]];
+            
+            NSString *hardReleaseTime = [NSString stringWithFormat:@"20%@年%@月%@日",[returnStr substringWithRange:NSMakeRange(21, 2)],[returnStr substringWithRange:NSMakeRange(23, 2)], [returnStr substringWithRange:NSMakeRange(25, 2)]];
+            
+            returnStr = [NSString stringWithFormat:@"软件版本：%@ 发布时间：%@ \n硬件版本：%@ 发布时间：%@ ", softVersion, softReleaseTime, hardVersion, hardReleaseTime];
+            
+        }
+            break;
+            
+        case MCUStateCMD :{
+            NSLog(@"接收到MCU状态串 %@ ",result);
+            
+        }
+            break;
+            
+        case NoneCMD: {
+            NSLog(@"~命令默认状态");
+        }
+            break;
+            
         default:
             break;
     }
@@ -556,6 +598,16 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     if (dataArray1.count == 0) {
         
         NSLog(@"请先查询阈值");
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"sorry" message:@"请先查询阈值，再设置阈值" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+        
         
         return;
     }
