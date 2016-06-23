@@ -106,7 +106,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.943382"
+                  timestampString = "488342290.549728"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "128"
@@ -121,7 +121,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.943501"
+                  timestampString = "488342290.54989"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "128"
@@ -154,7 +154,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.944328"
+                  timestampString = "488342290.550912"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "138"
@@ -169,7 +169,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.944487"
+                  timestampString = "488342290.551082"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "138"
@@ -202,7 +202,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.945331"
+                  timestampString = "488342290.552129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -217,7 +217,7 @@
                   moduleName = "BleDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Documents/github/ble_demo/BleDemo/BleDemo/PeripheralViewController.m"
-                  timestampString = "487827318.945439"
+                  timestampString = "488342290.55229"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -288,22 +288,6 @@
             startingLineNumber = "189"
             endingLineNumber = "189"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BleDemo/ViewController.m"
-            timestampString = "487762917.072996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

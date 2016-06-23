@@ -1,0 +1,4 @@
+platform :ios, '9.3'
+target 'BleDemo' do
+pod 'FMDB', '~> 2.6.2'
+end
