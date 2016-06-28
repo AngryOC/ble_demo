@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FMDB.h>
 #import "RecordItem.h"
 
 @interface DataBaseOperator : NSObject
+
+@property (strong, nonatomic) FMDatabase *recordDB; 
 
 - (NSMutableArray *)searchDB;
 

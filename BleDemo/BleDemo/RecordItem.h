@@ -10,8 +10,23 @@
 
 @interface RecordItem : NSObject
 
+
+/*记录的 主键*/
+@property (strong, nonatomic) NSNumber *recordID;
+
 /*记录时间  保存成串*/
-@property (strong, nonatomic) NSString *recordTime;
+@property (strong, nonatomic) NSString *insertTime;
+
+@property (strong, nonatomic) NSString *sendTime;
+@property (strong, nonatomic) NSNumber *sendCounts;
+@property (strong, nonatomic) NSNumber *sended;
+
+
+//状态信息
+@property (strong, nonatomic) NSNumber *moving;
+@property (strong, nonatomic) NSNumber *locked;
+@property (strong, nonatomic) NSNumber *multiPerson;
+@property (strong, nonatomic) NSNumber *isUsing;
 
 /*温度 精确到1 封装在NSNumber中的为 integer*/
 @property (strong, nonatomic) NSNumber *temperature;

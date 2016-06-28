@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14071CC21D1A899900300F3D /* RecordItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14071CC11D1A899900300F3D /* RecordItem.m */; };
 		14071CC61D1B817900300F3D /* DataBaseOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 14071CC51D1B817900300F3D /* DataBaseOperator.m */; };
+		14071CC91D20D1E000300F3D /* dataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14071CC81D20D1E000300F3D /* dataModel.m */; };
 		14B6CC481D0657EA002010E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6CC471D0657EA002010E4 /* main.m */; };
 		14B6CC4B1D0657EA002010E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6CC4A1D0657EA002010E4 /* AppDelegate.m */; };
 		14B6CC4E1D0657EA002010E4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B6CC4D1D0657EA002010E4 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 		14071CC11D1A899900300F3D /* RecordItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordItem.m; sourceTree = "<group>"; };
 		14071CC41D1B817900300F3D /* DataBaseOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseOperator.h; sourceTree = "<group>"; };
 		14071CC51D1B817900300F3D /* DataBaseOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseOperator.m; sourceTree = "<group>"; };
+		14071CC71D20D1E000300F3D /* dataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataModel.h; sourceTree = "<group>"; };
+		14071CC81D20D1E000300F3D /* dataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataModel.m; sourceTree = "<group>"; };
 		14B6CC431D0657EA002010E4 /* BleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B6CC471D0657EA002010E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14B6CC491D0657EA002010E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 				14071CC11D1A899900300F3D /* RecordItem.m */,
 				14071CC41D1B817900300F3D /* DataBaseOperator.h */,
 				14071CC51D1B817900300F3D /* DataBaseOperator.m */,
+				14071CC71D20D1E000300F3D /* dataModel.h */,
+				14071CC81D20D1E000300F3D /* dataModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CFB2CD1D0802FD009F8877 /* PeripheralViewController.m in Sources */,
+				14071CC91D20D1E000300F3D /* dataModel.m in Sources */,
 				14CFB2E61D1001AB009F8877 /* SetRangeViewController.m in Sources */,
 				14B6CC4E1D0657EA002010E4 /* ViewController.m in Sources */,
 				14071CC61D1B817900300F3D /* DataBaseOperator.m in Sources */,

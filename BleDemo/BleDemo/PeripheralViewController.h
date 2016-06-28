@@ -11,6 +11,10 @@
 #import "pickViewController.h"
 #import "SetRangeViewController.h"
 
+#import "RecordItem.h"
+#import "DataBaseOperator.h"
+#import "dataModel.h"
+
 typedef NS_ENUM(NSInteger, Channel)
 {
     //以下是枚举成员
@@ -47,6 +51,8 @@ typedef NS_ENUM(NSInteger, CMDType) {
 @property (nonatomic, strong) CBPeripheral *selPeripheral;  //选中的外设
 
 @property (nonatomic, strong) NSArray *UUIDSArray;
+
+@property (nonatomic, strong) dataModel *dataBaseModel;
 
 
 @property (weak, nonatomic) IBOutlet UITextView *reciveTextView;

@@ -72,6 +72,10 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     cmdChannel  = NoneChannel;
     cmdType     = NoneCMD;
     
+    
+    //初始化数据模型 创建 数据库 和 表格
+    _dataBaseModel = [[dataModel alloc] init];
+    
 
 
 }
@@ -216,6 +220,13 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 _reciveTextView.text = [_reciveTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 接收 \n%@\n\n",timeStr, characteristic.value]];
  // -----------解析
                 _analyticTextView.text = [_analyticTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@ 接收 \n%@\n\n",timeStr, [self analyResultStr:[self hexToString: characteristic.value]]]];
+                
+                
+//-----------实时数据插入 数据库  解析数据的时候 然如数据库
+                
+                
+                
+                
                 
                 //自动滚动到最后一行
                 if (_reciveTextView.contentSize.height > _reciveTextView.bounds.size.height){
@@ -426,6 +437,7 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
         case RealtimeReportCMD: {
             
             NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+            NSMutableArray *statusArray = [[NSMutableArray alloc] init];
             
             for (int i = 0; i < 6; i++) {
                 
@@ -452,8 +464,10 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
                 //[stateArray addObject:[NSNumber numberWithInt:num/pow(2, i)]];
                 if (num/pow(2, i-1) == 1) {
                     [dataArray addObject:trueTitles[4-i]];
+                    [statusArray addObject:[NSNumber numberWithInt:1]];
                 } else {
                     [dataArray addObject:falseTitles[4-i]];
+                    [statusArray addObject:[NSNumber numberWithInt:0]];
                 }
                 
                 num = num % (long int)(pow(2, i-1));
@@ -462,6 +476,8 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
             returnStr = [NSString stringWithFormat:@"实时数据 \n{电压:%0.3f | 温度：%lu | CO: %0.1f | CO2: %lu | HCHO: %0.2f | PM2.5 %lu \n座椅状态：%@ \n行驶状态：%@ \n卡口状态： %@ \n人员状态： %@ }", [dataArray[0] unsignedLongValue]/1000.0, [dataArray[1] unsignedLongValue], [dataArray[2] unsignedLongValue]/10.0, [dataArray[3] unsignedLongValue], [dataArray[4] unsignedLongValue]/100.0, [dataArray[5] unsignedLongValue], dataArray[6], dataArray[7], dataArray[8], dataArray[9]];
             
             NSLog(@"   %@", returnStr);
+            
+            [self insertIntoDataBaseWithParameter:dataArray andStatus:statusArray];
             
         }
             break;
@@ -581,6 +597,38 @@ static NSString * const kCharacteristicUUID = @"9D69C18C-186C-45EA-A7DA-6ED7500E
     
     return returnStr;
 }
+
+- (void) insertIntoDataBaseWithParameter:(NSMutableArray *)parameters andStatus:(NSMutableArray *) statuss {
+    
+    RecordItem * aNewRecord = [[RecordItem alloc] init];
+    aNewRecord.temperature  = parameters[1];
+    aNewRecord.COValue      = parameters[2];
+    aNewRecord.COOValue     = parameters[3];
+    aNewRecord.HCHOValue    = parameters[4];
+    aNewRecord.PMValue      = parameters[5];
+    
+    aNewRecord.isUsing      = statuss[3];
+    aNewRecord.moving       = statuss[2];
+    aNewRecord.locked       = statuss[1];
+    aNewRecord.multiPerson  = statuss[0];
+    
+    
+    //打印通知 log
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString *timeStr = [formatter stringFromDate:[NSDate date]];
+    
+    aNewRecord.insertTime   = timeStr;
+    aNewRecord.sendTime     = timeStr;
+    aNewRecord.sendCounts   = [NSNumber numberWithInteger:0];
+    aNewRecord.sended       = [NSNumber numberWithInteger:0];
+    
+
+    [_dataBaseModel insertIntoDB:aNewRecord];
+//
+    [_dataBaseModel showAllRecord]; // 插入完了 打印部分字段
+}
+
 
 
 
